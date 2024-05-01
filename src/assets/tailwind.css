@@ -1,5 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-white
+    }
+}
+
+@layer components {
+    .table-container {
+        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+    }
+
+    @media only screen and (max-width: 600px) {
+        .table-container {
+            grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+        }
+    }
+}
