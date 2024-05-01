@@ -1,13 +1,26 @@
 <template>
-    <button @click="selectCard" class="card-bg focus:outline-none outline-none flex justify-center p-3 items-center md:hover:-translate-y-3 duration-200 w-full max-w-64 aspect-[5/7] rounded-lg bg-secondary">
-        <div class="flex flex-col justify-center items-center p-5 border-2 border-white rounded-lg">
-            <img class="max-w-40 w-full aspect-square object-contain object-center" src="https://1000logos.net/wp-content/uploads/2023/05/Straw-Hat-Logo.png" alt="">
-            <span class="font-Bangers tracking-wider text-white text-2xl text-center">Grandline Memory Game</span>
+    <button @click="toggleShowCard" :class="{'show-card': showCard, 'hide-card hover:shadow-primary ': !showCard}" class="card-bg focus:outline-none outline-none flex justify-center p-3 items-center duration-500 w-full max-w-64 aspect-[5/8] rounded-lg bg-secondary">
+        <div class="w-full h-full flex flex-col justify-center items-center rounded-lg overflow-hidden">
+            <!-- Frontside -->
+            <div :class="{'flex': showContent, 'hidden': !showContent}" class="w-full h-full flex-col gap-1 justify-between items-center rounded-lg">
+                <img draggable="false" :src="image" class="select-none border-4 border-white w-full h-[80%] rounded-lg object-cover object-top" alt="">
+                <span class="flex justify-center items-center w-full h-[20%] text-white font-bold text-lg text-center">{{ truncate(name, 30) }}</span>
+            </div>
+
+            <!-- Backside -->
+            <div :class="{'hidden': showContent, 'flex': !showContent}" class="w-full h-full flex-col justify-center items-center p-5">
+                <img draggable="false" class="select-none max-w-40 w-full aspect-square object-contain object-center" src="https://1000logos.net/wp-content/uploads/2023/05/Straw-Hat-Logo.png" alt="">
+                <span class="select-none font-Bangers tracking-wider text-white text-2xl text-center">Grandline Memory Game</span>
+            </div>
+
         </div>
     </button>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+
 const props = defineProps({
     name: {
         type: String,
@@ -19,8 +32,27 @@ const props = defineProps({
     }
 })
 
-const selectCard = () => {
-    alert(props.name + " " + props.image)
+const showCard = ref(false)
+const showContent = ref(false)
+
+const toggleShowCard = () => {
+    showCard.value = !showCard.value
+
+    if(showCard.value){
+        setTimeout(() => {
+            showContent.value = true
+        }, 300)
+    }
+    else{
+        setTimeout(() => {
+            showContent.value = false
+        }, 300)
+    }
+}
+
+const truncate = (str, limit) => {
+    if(str.length > limit) return str.substring(0, limit) + '...'
+    return str
 }
 
 </script>

@@ -8,11 +8,15 @@ module.exports = {
         'secondary': '#a90000',
         'black': '#1f1e1e'
       },
-      fontFamily:{
+      fontFamily: {
         'Bangers': ["Bangers", "system-ui"]
+      },
+      boxShadow: {
+        'primary': '0 0 30px 0 rgba(5, 73, 165, 0.5)',
+        'secondary': '0 0 30px 0 rgba(169, 0, 0, 1)',
+        'black': '0 0 30px 0 rgba(31, 30, 30, 1)'
       },
     },
   },
   plugins: [],
 }
-

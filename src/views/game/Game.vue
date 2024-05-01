@@ -1,5 +1,9 @@
 <template>
-    <div class="w-full min-h-screen flex justify-center items-center">
+    <div class="w-full min-h-screen flex flex-col justify-center items-center">
+        <div class="w-full p-5 max-w-[1600px]">
+            <span class="font-medium text-2xl text-secondary">Berries: </span>
+            <span class="font-bold text-4xl text-secondary">20</span>
+        </div>
         <Table v-if="!isPending" :characters="characters"/>
     </div>
 </template>
@@ -14,9 +18,10 @@ const { getData, isPending } = useFetch(process.env.VUE_APP_CHAR_API_URL)
 
 onMounted(async () => {
     const response = await getData()
+
     characters.value = await sliceRandomly(response.data.map(data => {
         return { name: data.character.name, imageUrl: data.character.images.jpg.image_url}
-    }), 3)
+    }), 10)
 })
 
 const sliceRandomly = (arr = [], max) => {
