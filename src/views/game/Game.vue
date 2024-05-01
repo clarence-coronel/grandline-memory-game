@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full min-h-screen flex flex-col justify-between items-center">
-        <Controls />
+    <div class="w-full min-h-screen flex flex-col md:justify-between items-center">
+        <Controls v-if="!isPending" />
         <Container v-if="!isPending" :characters="characters"/>
     </div>
 </template>
