@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full min-h-screen flex flex-col md:justify-between items-center">
+    <div class="w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls v-if="!isPending" />
         <Container v-if="!isPending" :characters="characters"/>
     </div>
@@ -19,7 +19,7 @@ onMounted(async () => {
 
     characters.value = await sliceRandomly(response.data.map(data => {
         return { name: data.character.name, imageUrl: data.character.images.jpg.image_url}
-    }), 10)
+    }), 20)
 })
 
 const sliceRandomly = (arr = [], max) => {
