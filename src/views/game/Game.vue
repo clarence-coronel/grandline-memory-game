@@ -1,15 +1,13 @@
 <template>
-    <div class="w-full min-h-screen flex flex-col justify-center items-center">
-        <div class="w-full p-5 max-w-[1600px]">
-            <span class="font-medium text-2xl text-secondary">Berries: </span>
-            <span class="font-bold text-4xl text-secondary">20</span>
-        </div>
-        <Table v-if="!isPending" :characters="characters"/>
+    <div class="w-full min-h-screen flex flex-col justify-between items-center">
+        <Controls />
+        <Container v-if="!isPending" :characters="characters"/>
     </div>
 </template>
 
 <script setup>
-import Table from './Table.vue';
+import Container from './Container.vue';
+import Controls from './Controls.vue';
 import { useFetch } from '@/composables/useFetch';
 import { onMounted, ref } from 'vue';
 

@@ -8,8 +8,17 @@
 
 @layer base {
     body {
+        @apply min-h-screen w-full;
         background-image: url('https://wallpapers.com/images/featured/one-piece-c0pujiakubq5rwas.jpg');
         background-position: center;
+      }
+
+      ::-moz-selection {
+        @apply bg-secondary text-white;
+      }
+    
+      ::selection {
+        @apply bg-secondary text-white;
       }
 }
 
