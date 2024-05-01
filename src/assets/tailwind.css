@@ -13,6 +13,13 @@
 }
 
 @layer components {
+    .card-bg{
+        background-image: url('./one-piece-bg.png');
+        background-size: 200px;
+        background-position: center;
+        
+    }
+
     .table-container {
         grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
     }
