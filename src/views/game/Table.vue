@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue';
 import Card from './Card.vue';
 
 const props = defineProps({
