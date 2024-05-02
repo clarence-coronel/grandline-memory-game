@@ -48,7 +48,7 @@
         }
     }
     .show-card{
-        animation: show-card-1 0.3s forwards, show-card-2 0.3s 0.3s forwards;
+        animation: show-card-1 0.3s ease-in-out, show-card-2 0.3s 0.3s ease-in;
     }
 
     @keyframes hide-card-1 {
@@ -68,10 +68,8 @@
         }
     }
     .hide-card{
-        animation: hide-card-1 0.3s forwards, hide-card-2 0.3s 0.3s forwards;
-    }
-
-   
+        animation: hide-card-1 0.3s ease-in-out, hide-card-2 0.3s 0.3s ease-in;
+    }   
 
     .table-container {
         /* grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) ); */
