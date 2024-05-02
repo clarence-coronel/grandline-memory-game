@@ -1,8 +1,12 @@
 <template>
-    <div class="w-full min-h-screen flex flex-col md:justify-start items-center">
+    <div class="game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls v-if="!isPending" />
         <Container v-if="!isPending" :characters="characters"/>
     </div>
+    <!-- <audio controls ref="flipSFX" class="" loop>
+        <source src="./../../assets/ost_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> -->
 </template>
 
 <script setup>

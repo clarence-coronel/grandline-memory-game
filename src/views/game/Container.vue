@@ -1,5 +1,5 @@
 <template>
-    <div class="grid table-container p-5 md:flex flex-wrap gap-5 place-content-center place-items-center w-full h-fit max-w-[1600px] mx-auto shadow-md rounded-xl">
+    <div class="grid table-container p-5 md:flex flex-wrap gap-2 md:gap-5 place-content-center place-items-center w-full h-fit max-w-[1600px] mx-auto shadow-md rounded-xl">
         <Card :name="character.name" :image="character.imageUrl" :index="index" v-for="character, index in characters" :key="index"/>
     </div>
 </template>

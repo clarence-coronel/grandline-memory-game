@@ -7,10 +7,11 @@
 @tailwind utilities;
 
 @layer base {
-    body {
+    .game-bg {
         @apply min-h-screen w-full;
-        background-image: url('https://wallpapers.com/images/featured/one-piece-c0pujiakubq5rwas.jpg');
+        background-image: url('https://preview.redd.it/w6fgwb1gmu481.png?width=3282&format=png&auto=webp&s=35baacf18504c303c58b4c9f3db5000325179e70');
         background-position: center;
+        background-size: cover;
       }
 
       ::-moz-selection {
@@ -81,9 +82,9 @@
         background-position: center;
     } */
 
-    @media only screen and (max-width: 650px) {
+    @media only screen and (max-width: 768px) {
         .table-container {
-            grid-template-columns: repeat( auto-fit, minmax(120px, 1fr) );
+            grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
         }
     }
 }
