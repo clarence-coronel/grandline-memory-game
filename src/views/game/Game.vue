@@ -14,6 +14,15 @@ import Container from './Container.vue';
 import Controls from './Controls.vue';
 import { useFetch } from '@/composables/useFetch';
 import { onMounted, ref } from 'vue';
+import { useGameStore } from '@/store/GameStore';
+
+const gameStore = useGameStore()
+
+// gameStore.setTopScore(5500, 78)
+// gameStore.resetTopScore()
+
+// gameStore.setLastRoundScore(999, 69)
+// console.log(gameStore.lastRoundScore)
 
 const characters = ref([])
 const { getData, isPending } = useFetch(process.env.VUE_APP_CHAR_API_URL)
