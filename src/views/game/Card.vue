@@ -61,15 +61,18 @@ const toggleShowCard = () => {
     if(showCard.value){
         setTimeout(() => {
             showContent.value = true
-            cardDisabled.value = false
+            
         }, 300)
     }
     else{
         setTimeout(() => {
             showContent.value = false
-            cardDisabled.value = false
         }, 300)
     }
+
+    setTimeout(()=> {
+        cardDisabled.value = false
+    }, 600)
 }
 
 const truncate = (str, limit) => {
