@@ -3,7 +3,7 @@
         <Controls />
         <Container :characters="characters"/>
     </div>
-    <div v-else class="relative w-full h-full min-h-screen flex flex-col justify-between items-center bg-primary/90 gap-2 p-5 py-10 md:p-10">
+    <div v-else class="relative w-full h-full min-h-screen flex flex-col justify-between items-center bg-primary/90 gap-2 px-5 pt-10 pb-16 md:p-10">
         <!-- <h1 class="font-Bangers tracking-wider text-white text-4xl">
             Grandline Memory Game
         </h1> -->
