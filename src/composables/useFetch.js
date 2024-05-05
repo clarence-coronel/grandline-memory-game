@@ -6,7 +6,7 @@ export function useFetch(url){
 
     const getData = async () => {
         try {
-            // await new Promise(resolve => setTimeout(resolve, 5000));
+            // await new Promise(resolve => setTimeout(resolve, 30000));
             const response = await axios.get(url)
             return response.data
         } catch (error) {

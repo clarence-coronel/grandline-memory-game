@@ -14,12 +14,20 @@
         background-size: cover;
       }
 
+      .game-bg ::-moz-selection {
+        @apply bg-primary text-white;
+      }
+    
+      .game-bg ::selection {
+        @apply bg-primary text-white;
+      }
+
       ::-moz-selection {
-        @apply bg-secondary text-white;
+        @apply bg-secondary-v2 text-white;
       }
     
       ::selection {
-        @apply bg-secondary text-white;
+        @apply bg-secondary-v2 text-white;
       }
 }
 
