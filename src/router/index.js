@@ -1,7 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Menu from "@/views/menu/Menu.vue"
 import Game from '@/views/game/Game.vue'
 
 const routes = [
+  {
+    path: '/',
+    name: 'menu',
+    component: Menu
+  },
   {
     path: '/game',
     name: 'game',

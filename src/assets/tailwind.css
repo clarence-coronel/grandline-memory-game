@@ -7,21 +7,6 @@
 @tailwind utilities;
 
 @layer base {
-    .game-bg {
-        @apply min-h-screen w-full;
-        background-image: url('https://preview.redd.it/w6fgwb1gmu481.png?width=3282&format=png&auto=webp&s=35baacf18504c303c58b4c9f3db5000325179e70');
-        background-position: center;
-        background-size: cover;
-      }
-
-      .game-bg ::-moz-selection {
-        @apply bg-primary text-white;
-      }
-    
-      .game-bg ::selection {
-        @apply bg-primary text-white;
-      }
-
       ::-moz-selection {
         @apply bg-secondary-v2 text-white;
       }
@@ -32,11 +17,31 @@
 }
 
 @layer components {
+    .menu-bg{
+        background-image: url('https://64.media.tumblr.com/c1331da27b1d3a45d055b6dc3430e697/tumblr_oqn85puZBp1v6xsm2o3_540.gif');
+        background-size: cover;
+        background-position: left;
+    }
+
+    .game-bg {
+        @apply min-h-screen w-full;
+        background-image: url('https://preview.redd.it/w6fgwb1gmu481.png?width=3282&format=png&auto=webp&s=35baacf18504c303c58b4c9f3db5000325179e70');
+        background-position: center;
+        background-size: cover;
+    }
+
     .card-bg{
         background-image: url('./one-piece-bg.png');
         background-size: 200px;
         background-position: center;
-        
+    }
+
+    .game-bg ::-moz-selection {
+        @apply bg-primary text-white;
+    }
+
+    .game-bg ::selection {
+        @apply bg-primary text-white;
     }
 
     @keyframes show-card-1 {

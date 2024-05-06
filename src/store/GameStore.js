@@ -1,121 +1,79 @@
 import { defineStore } from "pinia";
-import { ref } from 'vue'
-
-const getTopScore = () => {
-    try {
-        const topScore = JSON.parse(localStorage.getItem('topScore'))
-        return topScore
-    } catch (error) {
-        return null
-    }
-}
 
 export const useGameStore = defineStore("GameStore", {
     state: () => {
         return {
-            playerName: "Buggy D. Clown",
-            hp: 100, //100, custom
-            difficulty: 'NORMAL', //EASY, NORMAL, HARD, CUSTOM
-            numberOfCards: 10, // 5, 10, custom
-            topScore: getTopScore(), //saved from
-            lastRoundScore: null
+            hp: null,
+            berries: null,
+            time: null,
+            cardsLeft: null,
+            firstCard: null,
+            secondCard: null,
+            isGameReady: false
         }
     },
 
     actions: {
-        hardResetGame(){
-            localStorage.setItem('topScore', null)
-
-            this.playerName = "Buggy D. Clown"
-            this.hp = 100
-            this.difficulty = "NORMAL"
-            this.numberOfCards = 10
-            this.highestBerries = getTopScore()
-            this.lastRoundScore = null
+        setHp(amount){
+            this.hp = amount
         },
-        softResetGame(){
-            this.playerName = "Buggy D. Clown"
-            this.hp = 100
-            this.difficulty = "NORMAL"
-            this.numberOfCards = 10
+        inflictDamage(dmg){
+            this.hp-=dmg
         },
-        setTopScore(amount, time){
-            if(!amount || isNaN(amount) || !time || isNaN(time)) {
-                console.error("setTopScore: invalid argument")
-                return
+        setBerries(newBerries){
+            this.berries = newBerries
+        },
+        addBerries(amount){
+            this.berries+=amount
+        },
+        setTime(newTime){
+            this.time = newTime
+        },
+        setCardsLeft(newCardsLeft){
+            this.cardsLeft = newCardsLeft
+        },
+        reduceCardsLeft(){
+            this.cardsLeft-=1
+        },
+        updateFirstCard(id = null){
+            this.firstCard = id
+        },
+        updateSecondCard(id = null){
+            this.secondCard = id
+        },
+        validateSelectedCards(){
+            if((this.firstCard && this.secondCard) && (this.firstCard === this.secondCard)) {
+                this.reduceCardsLeft()
+                return true
             }
-
-            localStorage.setItem('topScore', JSON.stringify({playerName: this.playerName, berries: amount, time: time + 's'}))
-            this.highestBerries = getTopScore()
+            return false
         },
-        resetTopScore(){
-            localStorage.setItem('topScore', null)
-        },
-        setPlayerName(name){
-            this.playerName = name
-        },
-        resetPlayerName(){
-            this.playerName = "Buggy D. Clown"
-        },
-        setHp(hp){
-            if(isNaN(hp)) {
-                console.error("setHp: invalid argument")
-                return
-            }
-            this.hp = parseInt(hp)
-        },
-        resetHp(){
-            this.hp = 100
-        },
-        setDifficulty(difficulty){
-            if(difficulty !== "EASY" && difficulty !== "NORMAL" && difficulty !== "HARD" && difficulty !== "CUSTOM"){
-                console.error("setDifficulty: invalid argument")
-                return
-            }
-            this.difficulty = difficulty
-        },
-        resetDifficulty(){
-            this.difficulty = "NORMAL"
-        },
-        setNumberOfCards(numberOfCards){
-            if(isNaN(numberOfCards)) {
-                console.error("setNumberOfCards: invalid argument")
-                return
-            }
-            this.numberOfCards = parseInt(numberOfCards)
-        },
-        resetNumberOfCards(){
-            this.numberOfCards = 10
-        },
-        setLastRoundScore(amount, time){
-            if(!amount || isNaN(amount) || !time || isNaN(time)) {
-                console.error("setLastRoundScore: invalid argument")
-                return
-            }
-
-            this.lastRoundScore = {playerName: this.playerName, berries: amount, time: time + 's'}
+        toggleGameStatus() {
+            this.isGameReady = !this.isGameReady
         }
     },
 
     getters: {
-        getPlayerName() {
-            return this.playerName
-        },
-        getHp() {
+        getHp(){
             return this.hp
         },
-        getDifficulty() {
-            return this.difficulty
+        getBerries(){
+            return this.berries
         },
-        getNumberOfCards() {
-            return this.numberOfCards
+        getTime() {
+            return this.time
         },
-        getTopScore() {
-            return this.topScore
+        getCardsLeft() {
+            return this.cardsLeft
         },
-        getLastRoundScore() {
-            return this.lastRoundScore
+        getFirstCard(){
+            return this.firstCard
         },
+        getSecondCard(){
+            return this.secondCard
+        },
+        getGameStatus(){
+            return this.isGameReady
+        }
     }
 })
-
