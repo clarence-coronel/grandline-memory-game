@@ -55,7 +55,9 @@ export const useCharacterStore = defineStore("CharacterStore", {
         },
         getCharactersGameReady() {
             if(!this.characters) return []
+            
             let readyChar = []
+
             const randomCharacters = this.sliceArray(this.shuffleArray(this.characters), this.limit).map((data, index) => {
                 return { id: index, name: data.character.name, imageUrl: data.character.images.jpg.image_url}
             })

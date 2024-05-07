@@ -24,8 +24,15 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useGameStore } from '@/store/GameStore';
+
+const gameStore = useGameStore()
 
 const props = defineProps({
+    id: {
+        type: Number,
+        default: 0
+    },
     name: {
         type: String,
         default: ''
@@ -38,10 +45,6 @@ const props = defineProps({
         type: Number,
         default: 0
     },
-    isDisabled: {
-        type: Boolean,
-        default: false
-    }
 })
 
 const cardDisabled = ref(false)
@@ -50,29 +53,58 @@ const showCard = ref(false)
 const showContent = ref(false)
 
 const toggleShowCard = () => {
+
+    // Toggle showCard
     showCard.value = !showCard.value
 
-    flipSFX.value.pause();
-    flipSFX.value.currentTime = 0;
-
-    flipSFX.value.play()
+    // Disable card while flipping
     cardDisabled.value = true
 
-    if(showCard.value){
-        setTimeout(() => {
-            showContent.value = true
-            
-        }, 300)
-    }
-    else{
-        setTimeout(() => {
-            showContent.value = false
-        }, 300)
-    }
+    // Play flip sfx
+    flipCardSFX()
 
+    //Show card content with delay, so it would change 
+    //content right in the middle
+    setTimeout(() => {
+        showContent.value = !showContent.value
+    }, 300)
+    
+
+    // Enable card after flip
     setTimeout(()=> {
         cardDisabled.value = false
     }, 600)
+
+    if(!showCard.value) return
+    
+    // // Selecting Card
+    // if(!gameStore.getFirstCard){
+    //     gameStore.updateFirstCard(props.id)
+    // } 
+    // else if (!gameStore.getSecondCard){
+    //     gameStore.updateSecondCard(props.id)
+    // }
+
+    // if(gameStore.getFirstCard && gameStore.getSecondCard){
+    //     if(gameStore.validateSelectedCards()){
+    //         console.log("Match!")
+    //     }
+    //     else{
+    //         console.log ("Does not match...")
+    //     }
+
+    //     // Clear selected cards
+    //     gameStore.updateFirstCard()
+    //     gameStore.updateSecondCard()
+    // }
+
+
+}
+
+const flipCardSFX = () =>{
+    flipSFX.value.pause();
+    flipSFX.value.currentTime = 0;
+    flipSFX.value.play()
 }
 
 const truncate = (str, limit) => {
