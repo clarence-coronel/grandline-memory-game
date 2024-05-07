@@ -11,13 +11,16 @@ import Container from './Container.vue';
 import Controls from './Controls.vue';
 import { useRouter } from 'vue-router';
 import { useCharacterStore } from '@/store/CharacterStore';
+import { useGameStore } from '@/store/GameStore';
 
 const router = useRouter();
+
 const characterStore = useCharacterStore()
+const gameStore = useGameStore()
 
-// console.log(characterStore.getCharactersGameReady)
 
-if(characterStore.getRawCharacters.length == 0) {
+// Evaluate if gamestatus is ready
+if(!gameStore.getGameStatus) {
     router.push('/');
 }
 </script>

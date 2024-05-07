@@ -51,6 +51,16 @@ export const useGameStore = defineStore("GameStore", {
         },
         toggleGameStatus() {
             this.isGameReady = !this.isGameReady
+        },
+        evaluateGameStatus() {
+            if(this.getCardsLeft == 0){
+                alert("You win")
+            }
+            else if (this.getHp == 0){
+                alert("You lose")
+            }
+
+            this.toggleGameStatus()
         }
     },
 

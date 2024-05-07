@@ -48,7 +48,7 @@ const selectCard = (payload) => {
 
                 disableCards.value = false
 
-                evaluateGameStatus()
+                gameStore.evaluateGameStatus()
             }, 2000)
         }
         else{
@@ -62,17 +62,8 @@ const selectCard = (payload) => {
                 disableCards.value = false
                 console.log(gameStore.getHp)
 
-                evaluateGameStatus()
+                gameStore.evaluateGameStatus()
             }, 2000)
-        }
-    }
-
-    const evaluateGameStatus = () => {
-        if(gameStore.getCardsLeft == 0){
-            alert("You win")
-        }
-        else if (gameStore.getHp == 0){
-            alert("You lose")
         }
     }
 }

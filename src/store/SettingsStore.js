@@ -16,9 +16,9 @@ export const useSettingsStore = defineStore("SettingsStore", {
             hp: 100, //100, custom
             difficulty: 'NORMAL', //EASY, NORMAL, HARD, CUSTOM
             numberOfCards: 10, // 5, 10, custom
-            topScore: getTopScore(), //saved from
+            topScore: getTopScore(), //retrieved from local storage
             lastRoundScore: null,
-            damage: 10
+            damage: 2
         }
     },
 
