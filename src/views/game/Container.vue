@@ -43,13 +43,17 @@ const selectCard = (payload) => {
                 gameStore.getFirstCard.remove()
                 gameStore.getSecondCard.remove()
 
+                gameStore.addBerries(100 * streak.value)
+                gameStore.incrementStreak()
+                
                 gameStore.updateFirstCard()
                 gameStore.updateSecondCard()
 
                 disableCards.value = false
 
-                gameStore.evaluateGameStatus()
-            }, 2000)
+                if(gameStore.evaluateGameStatus()){
+                }
+            }, 1500)
         }
         else{
             setTimeout(() => {
@@ -59,11 +63,13 @@ const selectCard = (payload) => {
                 gameStore.updateFirstCard()
                 gameStore.updateSecondCard()
 
+                gameStore.resetStreak()
+
                 disableCards.value = false
                 console.log(gameStore.getHp)
 
                 gameStore.evaluateGameStatus()
-            }, 2000)
+            }, 1500)
         }
     }
 }

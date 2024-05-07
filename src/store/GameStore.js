@@ -4,13 +4,14 @@ export const useGameStore = defineStore("GameStore", {
     state: () => {
         return {
             hp: null,
-            berries: null,
-            time: null,
+            berries: 0,
+            time: 0,
             cardsLeft: null,
             firstCard: null,
             secondCard: null,
             isGameReady: false,
-            closeAllCards: false
+            closeAllCards: false,
+            streak: 1
         }
     },
 
@@ -54,13 +55,21 @@ export const useGameStore = defineStore("GameStore", {
         },
         evaluateGameStatus() {
             if(this.getCardsLeft == 0){
-                alert("You win")
+                console.log("You win")
+                this.toggleGameStatus()
+                return true
             }
-            else if (this.getHp == 0){
-                alert("You lose")
+            else if (this.getHp <= 0){
+                console.log("You lose")
+                this.toggleGameStatus()
+                return false
             }
-
-            this.toggleGameStatus()
+        },
+        incrementStreak() {
+            this.streak+=1
+        },
+        resetStreak(){
+            this.streak = 1
         }
     },
 
@@ -85,6 +94,9 @@ export const useGameStore = defineStore("GameStore", {
         },
         getGameStatus(){
             return this.isGameReady
+        },
+        getStreak(){
+            return this.streak
         }
     }
 })

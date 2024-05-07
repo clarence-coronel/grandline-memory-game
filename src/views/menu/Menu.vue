@@ -15,10 +15,10 @@
                     <h1 class="font-Bangers tracking-wider text-white text-3xl md:text-6xl text-center">Grandline Memory Game</h1>
                 </div>
 
-                <div class="flex flex-col h-fit border-2 border-white w-full rounded-md overflow-hidden">
-                    <button :disabled="disableButtons" @click="goToGame" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Play</button>
-                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Adventure</button>
-                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Settings</button>
+                <div class="flex flex-col h-fit border-2 border-white w-full max-w-[300px] rounded-md overflow-hidden">
+                    <button :disabled="disableButtons" @click="goToGame" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Play</button>
+                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Adventure</button>
+                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Settings</button>
                 </div>
             </div>
         </div>

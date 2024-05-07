@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="cardDisabled || disabled || fadeCard" @click="toggleShowCard(true)" :class="{'show-card md:hover:scale-105': showCard, 'hide-card ': !showCard, 'fade-card': fadeCard, 'md:hover:shadow-black-v2': !fadeCard}" class="card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
+    <button :disabled="cardDisabled || disabled || fadeCard || !gameStore.getGameStatus" @click="toggleShowCard(true)" :class="{'show-card md:hover:scale-105': showCard, 'hide-card ': !showCard, 'fade-card': fadeCard, 'md:hover:shadow-black-v2': !fadeCard && gameStore.getGameStatus}" class="card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
         <div class="w-full h-full flex flex-col justify-center items-center rounded-lg overflow-hidden">
             <!-- Frontside -->
             <div :class="{'flex': showContent, 'hidden': !showContent}" class="w-full h-full flex-col gap-1 justify-between items-center rounded-lg">
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 import { useGameStore } from '@/store/GameStore';
 
 const gameStore = useGameStore()

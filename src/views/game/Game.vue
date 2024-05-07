@@ -1,12 +1,16 @@
 <template>
-    <div class="game-in game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
+    <div class="relative game-in game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls />
         <Container :characters="characterStore.getCharactersGameReady"/>
     </div>
+    <audio controls ref="flipSFX" class="hidden">
+        <source src="./../../assets/card_sound_effect.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </template>
 
 <script setup>
-import { watchEffect } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 import Container from './Container.vue';
 import Controls from './Controls.vue';
 import { useRouter } from 'vue-router';
@@ -18,9 +22,22 @@ const router = useRouter();
 const characterStore = useCharacterStore()
 const gameStore = useGameStore()
 
+const flipSFX = ref(null)
 
 // Evaluate if gamestatus is ready
 if(!gameStore.getGameStatus) {
     router.push('/');
 }
+
+const flipCardSFX = () =>{
+    flipSFX.value.pause();
+    flipSFX.value.currentTime = 0;
+    flipSFX.value.play()
+}
+
+onMounted(() => {
+    flipCardSFX()
+})
+
+
 </script>
