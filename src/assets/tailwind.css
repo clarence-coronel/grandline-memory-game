@@ -17,6 +17,32 @@
 }
 
 @layer components {
+    @keyframes game-in {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 100;
+        }
+    }
+
+    .game-in{
+        animation: game-in 2s forwards;
+    }
+
+    @keyframes menu-exit {
+        from{
+            opacity: 100;
+        }
+        to{
+            opacity: 0;
+        }
+    }
+
+    .menu-exit{
+        animation: menu-exit 2s forwards;
+    }
+
     .menu-bg{
         background-image: url('https://64.media.tumblr.com/c1331da27b1d3a45d055b6dc3430e697/tumblr_oqn85puZBp1v6xsm2o3_540.gif');
         background-size: cover;

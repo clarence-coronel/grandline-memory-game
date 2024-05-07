@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!characterStore.getIsPending" class="menu-bg w-full">
+    <div v-if="!characterStore.getIsPending" :class="{'menu-exit': addExitAnim}" class="menu-bg w-full">
         <div class="w-full flex flex-col items-center gap-5 min-h-screen bg-black/90 px-5 pt-10 pb-12 md:p-10">
             <div class="w-full flex justify-end">
                 <button class="text-white" @click="toggleMusic">
@@ -65,6 +65,8 @@ const musicStore = useMusicStore()
 const gameStore = useGameStore()
 const characterStore = useCharacterStore()
 
+const addExitAnim = ref(false)
+
 const router = useRouter();
 const audio = ref(null)
 
@@ -93,7 +95,12 @@ const toggleMusic = () => {
 const selectedFact = facts.OnePieceFacts[characterStore.getRandomInt(0, facts.OnePieceFacts.length)]
 
 const goToGame = () => {
-    gameStore.toggleGameStatus()
-    router.push('/game');
+    addExitAnim.value = true
+
+    setTimeout(() => {
+        gameStore.toggleGameStatus()
+        router.push('/game');
+    }, 2000)
+    
 }
 </script>

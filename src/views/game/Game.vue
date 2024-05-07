@@ -1,5 +1,5 @@
 <template>
-    <div class="game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
+    <div class="game-in game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls />
         <Container :characters="characterStore.getCharactersGameReady"/>
     </div>

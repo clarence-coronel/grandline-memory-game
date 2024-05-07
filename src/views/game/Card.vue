@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="cardDisabled" @click="toggleShowCard" :class="{'show-card': showCard, 'hide-card': !showCard}" class="md:hover:scale-105 md:hover:shadow-black-v2 card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
+    <button :disabled="cardDisabled || disabled" @click="toggleShowCard" :class="{'show-card': showCard, 'hide-card': !showCard}" class="md:hover:scale-105 md:hover:shadow-black-v2 card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
         <div class="w-full h-full flex flex-col justify-center items-center rounded-lg overflow-hidden">
             <!-- Frontside -->
             <div :class="{'flex': showContent, 'hidden': !showContent}" class="w-full h-full flex-col gap-1 justify-between items-center rounded-lg">
@@ -45,6 +45,10 @@ const props = defineProps({
         type: Number,
         default: 0
     },
+    disabled: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const cardDisabled = ref(false)
