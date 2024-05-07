@@ -58,14 +58,17 @@ const showCard = ref(false)
 const showContent = ref(false)
 const fadeCard = ref(false)
 
+// emit is used to determine if toggleShowcard 
+// is used locally or from an emitted reference function
 const toggleShowCard = (emit = false) => {
 
+    
     // Toggle showCard
     showCard.value = !showCard.value
 
     // Disable card while flipping
     cardDisabled.value = true
-
+    
     // Play flip sfx
     flipCardSFX()
 
@@ -74,16 +77,9 @@ const toggleShowCard = (emit = false) => {
     setTimeout(() => {
         showContent.value = !showContent.value
     }, 300)
-    
-
-    // Enable card after flip
-    setTimeout(()=> {
-        cardDisabled.value = false
-    }, 600)
-
-    if(!showCard.value) return
 
     if(emit) emits('selectCard', {id: props.id, toggle: toggleShowCard, remove: removeCard})
+    else cardDisabled.value = false
 }
 
 const removeCard = () => fadeCard.value = true
