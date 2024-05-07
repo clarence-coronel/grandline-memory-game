@@ -56,11 +56,13 @@ export const useGameStore = defineStore("GameStore", {
         evaluateGameStatus() {
             if(this.getCardsLeft == 0){
                 console.log("You win")
+                this.resetStreak()
                 this.toggleGameStatus()
                 return true
             }
             else if (this.getHp <= 0){
                 console.log("You lose")
+                this.resetStreak()
                 this.toggleGameStatus()
                 return false
             }

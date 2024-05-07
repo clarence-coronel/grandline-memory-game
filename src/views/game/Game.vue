@@ -39,5 +39,4 @@ onMounted(() => {
     flipCardSFX()
 })
 
-
 </script>

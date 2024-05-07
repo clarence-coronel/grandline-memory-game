@@ -10,6 +10,10 @@
       *{
         user-select: none;
       }
+
+      body{
+        @apply bg-white
+      }
 }
 
 @layer components {
