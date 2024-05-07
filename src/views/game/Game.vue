@@ -15,7 +15,7 @@ import { useCharacterStore } from '@/store/CharacterStore';
 const router = useRouter();
 const characterStore = useCharacterStore()
 
-console.log(characterStore.getCharactersGameReady)
+// console.log(characterStore.getCharactersGameReady)
 
 if(characterStore.getRawCharacters.length == 0) {
     router.push('/');

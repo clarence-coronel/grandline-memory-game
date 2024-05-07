@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="cardDisabled || disabled" @click="toggleShowCard" :class="{'show-card': showCard, 'hide-card': !showCard}" class="md:hover:scale-105 md:hover:shadow-black-v2 card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
+    <button :disabled="cardDisabled || disabled || fadeCard" @click="toggleShowCard(true)" :class="{'show-card md:hover:scale-105': showCard, 'hide-card ': !showCard, 'fade-card': fadeCard, 'md:hover:shadow-black-v2': !fadeCard}" class="card-bg focus:outline-none outline-none flex justify-center p-1 md:p-3 items-center duration-500 w-full max-w-44 aspect-[5/8] rounded-lg bg-primary">
         <div class="w-full h-full flex flex-col justify-center items-center rounded-lg overflow-hidden">
             <!-- Frontside -->
             <div :class="{'flex': showContent, 'hidden': !showContent}" class="w-full h-full flex-col gap-1 justify-between items-center rounded-lg">
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 import { useGameStore } from '@/store/GameStore';
 
 const gameStore = useGameStore()
@@ -50,13 +50,15 @@ const props = defineProps({
         default: false
     }
 })
+const emits = defineEmits(['selectCard'])
 
 const cardDisabled = ref(false)
 const flipSFX = ref(null)
 const showCard = ref(false)
 const showContent = ref(false)
+const fadeCard = ref(false)
 
-const toggleShowCard = () => {
+const toggleShowCard = (emit = false) => {
 
     // Toggle showCard
     showCard.value = !showCard.value
@@ -80,30 +82,11 @@ const toggleShowCard = () => {
     }, 600)
 
     if(!showCard.value) return
-    
-    // // Selecting Card
-    // if(!gameStore.getFirstCard){
-    //     gameStore.updateFirstCard(props.id)
-    // } 
-    // else if (!gameStore.getSecondCard){
-    //     gameStore.updateSecondCard(props.id)
-    // }
 
-    // if(gameStore.getFirstCard && gameStore.getSecondCard){
-    //     if(gameStore.validateSelectedCards()){
-    //         console.log("Match!")
-    //     }
-    //     else{
-    //         console.log ("Does not match...")
-    //     }
-
-    //     // Clear selected cards
-    //     gameStore.updateFirstCard()
-    //     gameStore.updateSecondCard()
-    // }
-
-
+    if(emit) emits('selectCard', {id: props.id, toggle: toggleShowCard, remove: removeCard})
 }
+
+const removeCard = () => fadeCard.value = true
 
 const flipCardSFX = () =>{
     flipSFX.value.pause();

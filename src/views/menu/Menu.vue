@@ -1,6 +1,6 @@
 <template>
     <div v-if="!characterStore.getIsPending" :class="{'menu-exit': addExitAnim}" class="menu-bg w-full">
-        <div class="w-full flex flex-col items-center gap-5 min-h-screen bg-black/90 px-5 pt-10 pb-12 md:p-10">
+        <div class="w-full flex flex-col items-center gap-5 min-h-screen bg-black/70 px-5 pt-10 pb-12 md:p-10">
             <div class="w-full flex justify-end">
                 <button class="text-white" @click="toggleMusic">
                     <svg class="aspect-square w-10 md:w-16" v-if="musicStore.getMusicStatus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07M7 6v8h2V6zm4 0v8h2V6z"/></svg>
@@ -16,9 +16,9 @@
                 </div>
 
                 <div class="flex flex-col h-fit border-2 border-white w-full rounded-md overflow-hidden">
-                    <button @click="goToGame" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Play</button>
-                    <button @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Adventure</button>
-                    <button @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Settings</button>
+                    <button :disabled="disableButtons" @click="goToGame" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Play</button>
+                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Adventure</button>
+                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-2xl font-semibold text-xl text-white px-3 py-3 md:py-6 duration-200">Settings</button>
                 </div>
             </div>
         </div>
@@ -66,6 +66,7 @@ const gameStore = useGameStore()
 const characterStore = useCharacterStore()
 
 const addExitAnim = ref(false)
+const disableButtons = ref(false)
 
 const router = useRouter();
 const audio = ref(null)
@@ -95,12 +96,13 @@ const toggleMusic = () => {
 const selectedFact = facts.OnePieceFacts[characterStore.getRandomInt(0, facts.OnePieceFacts.length)]
 
 const goToGame = () => {
+    disableButtons.value = true
     addExitAnim.value = true
-
+    
     setTimeout(() => {
         gameStore.toggleGameStatus()
         router.push('/game');
-    }, 2000)
+    }, 1500)
     
 }
 </script>

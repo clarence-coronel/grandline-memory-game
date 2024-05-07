@@ -9,7 +9,7 @@ const getTopScore = () => {
     }
 }
 
-export const usePlayerStore = defineStore("PlayerStore", {
+export const useSettingsStore = defineStore("SettingsStore", {
     state: () => {
         return {
             playerName: "Buggy D. Clown",
@@ -121,6 +121,9 @@ export const usePlayerStore = defineStore("PlayerStore", {
         getLastRoundScore() {
             return this.lastRoundScore
         },
+        getDamage() {
+            return this.damage
+        }
     }
 })
 

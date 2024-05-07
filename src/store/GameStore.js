@@ -9,7 +9,8 @@ export const useGameStore = defineStore("GameStore", {
             cardsLeft: null,
             firstCard: null,
             secondCard: null,
-            isGameReady: false
+            isGameReady: false,
+            closeAllCards: false
         }
     },
 
@@ -42,7 +43,7 @@ export const useGameStore = defineStore("GameStore", {
             this.secondCard = id
         },
         validateSelectedCards(){
-            if((this.firstCard && this.secondCard) && (this.firstCard === this.secondCard)) {
+            if((this.firstCard && this.secondCard) && (this.firstCard.id === this.secondCard.id)) {
                 this.reduceCardsLeft()
                 return true
             }
