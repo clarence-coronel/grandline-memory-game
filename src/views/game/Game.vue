@@ -1,7 +1,7 @@
 <template>
     <div class="relative game-in game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls />
-        <Container :characters="characterStore.getCharactersGameReady"/>
+        <Container @gameEnded="gameEnded" :characters="characterStore.getCharactersGameReady"/>
     </div>
     <audio controls ref="flipSFX" class="hidden">
         <source src="./../../assets/card_sound_effect.mp3" type="audio/mpeg">
@@ -38,5 +38,12 @@ const flipCardSFX = () =>{
 onMounted(() => {
     flipCardSFX()
 })
+
+const gameEnded = (status) => {
+    if(status === "VICTORY"){
+        alert("VICTORY")
+    }
+    else alert("DEFEAT")
+}
 
 </script>
