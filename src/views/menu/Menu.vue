@@ -2,7 +2,7 @@
     <div v-if="!characterStore.getIsPending" :class="{'menu-exit': addExitAnim}" class="menu-bg w-full">
         <div class="w-full flex flex-col items-center gap-5 min-h-screen bg-black/70 px-5 pt-10 pb-12 md:p-10">
             <div class="w-full flex justify-end">
-                <button class="text-white" @click="toggleMusic">
+                <button class="focus:outline-none outline-none text-white" @click="toggleMusic">
                     <svg class="aspect-square w-10 md:w-16" v-if="musicStore.getMusicStatus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07M7 6v8h2V6zm4 0v8h2V6z"/></svg>
                     <svg class="aspect-square w-10 md:w-16" v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><path fill="currentColor" d="M600 1200C268.65 1200 0 931.35 0 600S268.65 0 600 0s600 268.65 600 600s-268.65 600-600 600M450 300.45v599.1L900 600z"/></svg>
                 </button>
