@@ -18,7 +18,7 @@ export const useSettingsStore = defineStore("SettingsStore", {
             numberOfCards: 10, // 5, 10, custom
             topScore: getTopScore(), //retrieved from local storage
             lastRoundScore: null,
-            damage: 3
+            damage: 100
         }
     },
 

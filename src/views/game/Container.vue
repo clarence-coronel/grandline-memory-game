@@ -23,6 +23,8 @@ const props = defineProps({
     }
 })
 
+const emits = defineEmits(['gameEnded'])
+
 gameStore.setCardsLeft(10)
 gameStore.setHp(settingsStore.getHp)
 
@@ -43,7 +45,7 @@ const selectCard = (payload) => {
                 gameStore.getFirstCard.remove()
                 gameStore.getSecondCard.remove()
 
-                gameStore.addBerries(100 * streak.value)
+                gameStore.addBerries(100 * gameStore.getStreak)
                 gameStore.incrementStreak()
                 
                 gameStore.updateFirstCard()
@@ -51,8 +53,7 @@ const selectCard = (payload) => {
 
                 disableCards.value = false
 
-                if(gameStore.evaluateGameStatus()){
-                }
+                showEndGameModal()
             }, 1500)
         }
         else{
@@ -68,8 +69,16 @@ const selectCard = (payload) => {
                 disableCards.value = false
                 console.log(gameStore.getHp)
 
-                gameStore.evaluateGameStatus()
+                showEndGameModal()
             }, 1500)
+        }
+    }
+
+
+    const showEndGameModal = () => {
+        if(gameStore.evaluateGameStatus() === "VICTORY" || gameStore.evaluateGameStatus() === "DEFEAT"){
+            disableCards.value = true
+            emits('gameEnded', gameStore.evaluateGameStatus())
         }
     }
 }
