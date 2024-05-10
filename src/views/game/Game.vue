@@ -2,6 +2,7 @@
     <div class="relative game-in game-bg w-full min-h-screen flex flex-col md:justify-start items-center">
         <Controls />
         <Container @gameEnded="gameEnded" :characters="characterStore.getCharactersGameReady"/>
+        <Modal />
     </div>
     <audio controls ref="flipSFX" class="hidden">
         <source src="./../../assets/card_sound_effect.mp3" type="audio/mpeg">
@@ -11,6 +12,7 @@
 
 <script setup>
 import { onMounted, ref, watch, watchEffect } from 'vue';
+import Modal from '@/components/Modal.vue'
 import Container from './Container.vue';
 import Controls from './Controls.vue';
 import { useRouter } from 'vue-router';
@@ -21,6 +23,7 @@ const router = useRouter();
 
 const characterStore = useCharacterStore()
 const gameStore = useGameStore()
+const showEndGameModal = ref(false)
 
 const flipSFX = ref(null)
 

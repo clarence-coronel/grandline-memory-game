@@ -4,6 +4,7 @@ import { useFetch } from "@/composables/useFetch";
 export const useCharacterStore = defineStore("CharacterStore", {
     state: () => {
         return {
+            data: null,
             characters: null,
             limit: null,
             isPending: false
@@ -16,9 +17,9 @@ export const useCharacterStore = defineStore("CharacterStore", {
 
             const { getData } = useFetch(process.env.VUE_APP_CHAR_API_URL)
 
-            const response = await getData()
+            this.data = await getData()
 
-            this.characters = response.data
+            this.characters = this.data.data
 
             this.isPending = false
         },
@@ -68,6 +69,9 @@ export const useCharacterStore = defineStore("CharacterStore", {
         },
         getIsPending(){
             return this.isPending
+        },
+        getData(){
+            return this.data
         }
     }
 })

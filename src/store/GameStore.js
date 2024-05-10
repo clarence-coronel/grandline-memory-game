@@ -4,8 +4,8 @@ export const useGameStore = defineStore("GameStore", {
     state: () => {
         return {
             hp: null,
-            berries: 0,
-            time: 0,
+            berries: 1200,
+            time: 240,
             cardsLeft: null,
             firstCard: null,
             secondCard: null,

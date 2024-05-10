@@ -10,6 +10,9 @@ export const useMusicStore = defineStore("MusicStore", {
     actions: {
         toggleMusicPlaying(){
             this.isMusicPlaying = !this.isMusicPlaying
+        },
+        setMusicPlaying(val){
+            this.isMusicPlaying = val
         }
     },
 

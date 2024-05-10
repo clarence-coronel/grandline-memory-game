@@ -76,9 +76,6 @@ characterStore.loadCharacters()
 
 
 const toggleMusic = () => {
-    // audio.value.pause();
-    // audio.value.currentTime = 0;
-
     // audio.value.play()
 
     musicStore.toggleMusicPlaying()
@@ -100,6 +97,9 @@ const goToGame = () => {
     addExitAnim.value = true
     
     setTimeout(() => {
+        audio.value.pause();
+        audio.value.currentTime = 0;
+        musicStore.setMusicPlaying = false
         gameStore.toggleGameStatus()
         router.push('/game');
     }, 1500)
