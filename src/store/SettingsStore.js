@@ -5,7 +5,7 @@ const getTopScore = () => {
         const topScore = JSON.parse(localStorage.getItem('topScore'))
         return topScore
     } catch (error) {
-        return null
+        return 0
     }
 }
 
@@ -18,7 +18,7 @@ export const useSettingsStore = defineStore("SettingsStore", {
             numberOfCards: 10, // 5, 10, custom
             topScore: getTopScore(), //retrieved from local storage
             lastRoundScore: null,
-            damage: 3
+            damage: 4
         }
     },
 
@@ -32,22 +32,22 @@ export const useSettingsStore = defineStore("SettingsStore", {
             this.numberOfCards = 10
             this.highestBerries = getTopScore()
             this.lastRoundScore = null
-            this.damage = 10
+            this.damage = 4
         },
         softResetGame(){
             this.playerName = "Buggy D. Clown"
             this.hp = 100
             this.difficulty = "NORMAL"
             this.numberOfCards = 10
-            this.damage = 10
+            this.damage = 4
         },
-        setTopScore(amount, time){
-            if(!amount || isNaN(amount) || !time || isNaN(time)) {
+        setTopScore(amount){
+            if(!amount || isNaN(amount)) {
                 console.error("setTopScore: invalid argument")
                 return
             }
 
-            localStorage.setItem('topScore', JSON.stringify({playerName: this.playerName, berries: amount, time: time + 's'}))
+            localStorage.setItem('topScore', JSON.stringify({playerName: this.playerName, berries: amount}))
             this.highestBerries = getTopScore()
         },
         resetTopScore(){
@@ -89,13 +89,13 @@ export const useSettingsStore = defineStore("SettingsStore", {
         resetNumberOfCards(){
             this.numberOfCards = 10
         },
-        setLastRoundScore(amount, time){
-            if(!amount || isNaN(amount) || !time || isNaN(time)) {
+        setLastRoundScore(amount){
+            if(!amount || isNaN(amount)) {
                 console.error("setLastRoundScore: invalid argument")
                 return
             }
 
-            this.lastRoundScore = {playerName: this.playerName, berries: amount, time: time + 's'}
+            this.lastRoundScore = {playerName: this.playerName, berries: amount}
         },
         setDamage(dmg){
             this.damage = dmg

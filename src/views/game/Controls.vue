@@ -4,7 +4,7 @@
             <div class="flex gap-5 w-full max-w-[700px] items-center">
                 <span class="font-medium text-base md:text-xl text-white">HP</span>
                 <div class="bg-neutral-600 w-full max-w-[700px] h-3 md:h-5 rounded-md overflow-hidden">
-                    <div :style="{ width: `${hpLeft}%` }" :class="{'bg-red-500': hpLeft <= 20,'bg-orange-500': hpLeft <= 40 && hpLeft > 20, 'bg-green-500': hpLeft > 40}" class="h-full duration-200"></div>
+                    <div :style="{ width: `${hpLeft}%` }" :class="{'bg-red-500 animate-pulse': hpLeft <= 20,'bg-orange-500': hpLeft <= 40 && hpLeft > 20, 'bg-green-500': hpLeft > 40}" class="h-full duration-200"></div>
                 </div>
             </div>
 
@@ -42,7 +42,10 @@ let time = ref(0)
 
 onMounted(() => {
     timer = setInterval(() => {
+        if(gameStore.getCardsLeft == 0 || gameStore.getHp == 0) clearInterval(timer)
+
         time.value++
+        gameStore.setTime(time.value)
     }, 1000);
 })
 </script>
