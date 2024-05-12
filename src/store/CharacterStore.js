@@ -47,14 +47,8 @@ export const useCharacterStore = defineStore("CharacterStore", {
             
             // Return a new array sliced up to the specified limit
             return array.slice(0, endIndex);
-        }
-    },
-    getters: {
-        getRawCharacters(){
-            if(!this.characters) return []
-            return this.characters
         },
-        getCharactersGameReady() {
+        getRandomCharacters(){
             if(!this.characters) return []
             
             let readyChar = []
@@ -66,6 +60,12 @@ export const useCharacterStore = defineStore("CharacterStore", {
             readyChar = this.shuffleArray([...randomCharacters, ...randomCharacters])
 
             return readyChar
+        }
+    },
+    getters: {
+        getRawCharacters(){
+            if(!this.characters) return []
+            return this.characters
         },
         getIsPending(){
             return this.isPending
