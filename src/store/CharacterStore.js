@@ -17,9 +17,9 @@ export const useCharacterStore = defineStore("CharacterStore", {
 
             const { getData } = useFetch(process.env.VUE_APP_CHAR_API_URL)
 
-            const response = await getData()
+            this.data = await getData()
 
-            this.characters = response.data
+            this.characters = this.data.data
 
             this.isPending = false
         },

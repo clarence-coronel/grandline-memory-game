@@ -85,15 +85,16 @@ const reduceTotalBerries = setInterval(() => {
             totalBerries.value-=1
         }
         else{
+            clearInterval(reduceTotalBerries)
             populateReducedBerriesFinished.value = true
             if(totalBerries.value > settingsStore.getTopScore.berries){
                 newTopScore.value = true
                 settingsStore.setTopScore(totalBerries.value)
             }
 
-            console.log(localStorage.getItem("topScore"))
+            console.log(settingsStore.getTopScore.berries)
             // console.log(settingsStore.getTopScore)
-            clearInterval(reduceTotalBerries)
+            
         }
     }
 }, 1)

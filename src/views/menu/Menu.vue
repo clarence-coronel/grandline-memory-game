@@ -9,7 +9,7 @@
             </div>
 
             <div class="w-fit flex-col flex justify-center gap-10 items-center flex-1">
-                <img class="max-w-[700px] w-full object-fit object-center" src="https://1000logos.net/wp-content/uploads/2023/05/Straw-Hat-Logo.png" alt="">
+                <img loading="eager" class="max-w-[700px] w-full object-fit object-center" src="https://1000logos.net/wp-content/uploads/2023/05/Straw-Hat-Logo.png" alt="">
 
                 <div class="w-full flex justify-center items-center h-full">
                     <h1 class="font-Bangers tracking-wider text-white text-3xl md:text-6xl text-center">Grandline Memory Game</h1>

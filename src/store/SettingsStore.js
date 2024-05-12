@@ -1,12 +1,9 @@
 import { defineStore } from "pinia";
 
 const getTopScore = () => {
-    try {
-        const topScore = JSON.parse(localStorage.getItem('topScore'))
-        return topScore
-    } catch (error) {
-        return 0
-    }
+
+    if(localStorage.getItem('topScore')) return JSON.parse(localStorage.getItem('topScore'))
+    else return {playerName: "", berries: 0,}
 }
 
 export const useSettingsStore = defineStore("SettingsStore", {

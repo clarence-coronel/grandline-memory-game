@@ -4,10 +4,12 @@ import { useCharacterStore } from '@/store/CharacterStore';
 
 export function useFetch(url){
     const characterStore = useCharacterStore()
-    const isPending = ref(false)
-
+    const isPending = ref(characterStore.getData ? false : true)
+    
     const getData = async () => {
-        // if(characterStore.getData) return characterStore.getData
+
+        if(characterStore.getData) return characterStore.getData
+
 
         try {
             // await new Promise(resolve => setTimeout(resolve, 3000));
