@@ -17,7 +17,7 @@
 
                 <div class="flex flex-col h-fit border-2 border-white w-full max-w-[300px] rounded-md overflow-hidden">
                     <button :disabled="disableButtons" @click="goToGame" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Play</button>
-                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Adventure</button>
+                    <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Leaderboard</button>
                     <button :disabled="disableButtons" @click="" class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200">Settings</button>
                 </div>
             </div>
