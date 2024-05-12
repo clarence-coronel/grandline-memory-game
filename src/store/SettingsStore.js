@@ -124,9 +124,12 @@ export const useSettingsStore = defineStore("SettingsStore", {
       return this.damage;
     },
     getLeaderboardByDesc() {
-      return this.leaderboard.sort(
-        (a, b) => parseInt(b.berries) - parseInt(a.berries)
-      );
+      return this.leaderboard
+        .sort((a, b) => parseInt(b.berries) - parseInt(a.berries))
+        .map((entry, index) => {
+          entry.rank = index + 1;
+          return entry;
+        });
     },
   },
 });
