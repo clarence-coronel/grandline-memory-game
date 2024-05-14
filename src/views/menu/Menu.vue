@@ -230,7 +230,9 @@ import { useFetch } from "@/composables/useFetch";
 import Leaderboard from "./Leaderboard.vue";
 import facts from "@/data/facts.json";
 import { onMounted, ref, watch, watchEffect } from "vue";
+
 import { useRouter } from "vue-router";
+import isEqual from "lodash/isEqual";
 
 const musicStore = useMusicStore();
 const gameStore = useGameStore();

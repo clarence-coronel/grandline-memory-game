@@ -120,11 +120,17 @@ const reduceTotalBerries = setInterval(() => {
       if (totalBerries.value < 0) totalBerries.value = 0;
 
       const newEntry = settingsStore.addEntryToLeaderboard(totalBerries.value);
+      const firstPlace = { ...settingsStore.getLeaderboardByDesc[0] };
 
-      newTopScore.value = isEqual(
-        newEntry,
-        settingsStore.getLeaderboardByDesc[0]
-      );
+      delete newEntry.time;
+      delete firstPlace.time;
+      delete firstPlace.rank;
+
+      console.log("NEW ENTRY", newEntry);
+      console.log("1ST PLACE", firstPlace);
+      console.log("=", isEqual(newEntry, firstPlace));
+
+      newTopScore.value = isEqual(newEntry, firstPlace);
     }
   }
 }, 1);
