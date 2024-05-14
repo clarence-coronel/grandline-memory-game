@@ -44,10 +44,9 @@
           <td class="text-left p-5">{{ entry.date }} @ {{ entry.time }}</td>
         </tr>
       </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5" class="p-5">
-            <div class="w-full flex justify-center items-center gap-5">
+    </table>
+  </div>
+  <div class="w-full flex justify-center items-center gap-5">
               <button
                 :disabled="activePage == 1"
                 @click="() => activePage--"
@@ -70,7 +69,7 @@
                   </g>
                 </svg>
               </button>
-              <span class="text-lg font-bold">
+              <span class="text-lg font-bold text-white">
                 {{ activePage }}
               </span>
               <button
@@ -98,11 +97,6 @@
                 </svg>
               </button>
             </div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
 </template>
 
 <script setup>

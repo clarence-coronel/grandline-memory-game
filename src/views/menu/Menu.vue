@@ -114,7 +114,7 @@
       </template>
 
       <Leaderboard v-else-if="activeMenu == 'LEADERBOARD'" />
-      <div class="w-full h-10 text-white text-center">
+      <div v-show="activeMenu == 'MAIN_MENU'" class="w-full h-10 text-white text-center">
         <a
           href="https://github.com/clarence-coronel"
           target="_blank"
