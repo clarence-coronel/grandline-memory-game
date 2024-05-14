@@ -3,11 +3,11 @@
     class="w-full flex justify-center p-5 items-start pt-[20vh] min-h-screen fixed bg-black/70 z-50"
   >
     <div
-      class="flex flex-col justify-start items-center bg-white w-full max-w-[500px] rounded-lg p-5 md:p-10 gap-5"
+      class="flex flex-col justify-start items-center bg-white w-full max-w-[500px] rounded-lg p-5 md:p-10  gap-6 md:gap-10"
     >
       <template v-if="gameStatus == 'VICTORY'">
         <h1 class="text-green-500 font-bold text-3xl md:text-4xl">Victory!</h1>
-        <div class="flex flex-col gap-3 w-full max-w-[400px]">
+        <div class="flex flex-col gap-3 md:gap-5 w-full max-w-[400px]">
           <div class="flex gap-5 items-center justify-center">
             <span class="h-0.5 w-3 bg-black md:w-5"></span>
             <div class="w-full flex flex-col">
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div
-            class="border-t-2 flex justify-between gap-5 items-center font-semibold md:text-2xl"
+            class="border-t-2 pt-3 md:pt-5 flex justify-between gap-5 items-center font-semibold md:text-2xl"
           >
             Total Berries:
             <span class="font-bold text-3xl md:text-5xl">{{
@@ -84,14 +84,16 @@ let populateTimeFinished = ref(false);
 let populateReducedBerriesFinished = ref(false);
 
 const populateBerries = setInterval(() => {
-  if (berries.value != gameStore.getBerries) {
-    berries.value += 1;
-  } else {
-    totalBerries.value = gameStore.getBerries;
-    setTimeout(() => {
-      populateBerriesFinished.value = true;
-      clearInterval(populateBerries);
-    }, 1000);
+  if(props.gameStatus == 'VICTORY'){
+    if (berries.value != gameStore.getBerries) {
+      berries.value += 1;
+    } else {
+      totalBerries.value = gameStore.getBerries;
+      setTimeout(() => {
+        populateBerriesFinished.value = true;
+        clearInterval(populateBerries);
+      }, 1000);
+    }
   }
 }, 1);
 
@@ -119,24 +121,22 @@ const reduceTotalBerries = setInterval(() => {
       //   if negative
       if (totalBerries.value < 0) totalBerries.value = 0;
 
-      const newEntry = settingsStore.addEntryToLeaderboard(totalBerries.value);
-      const firstPlace = { ...settingsStore.getLeaderboardByDesc[0] };
+      if(settingsStore.getDifficulty != "CUSTOM"){
+        const newEntry = settingsStore.addEntryToLeaderboard(totalBerries.value);
+        const firstPlace = { ...settingsStore.getLeaderboardByDesc[0] };
 
-      delete newEntry.time;
-      delete firstPlace.time;
-      delete firstPlace.rank;
+        delete newEntry.time;
+        delete firstPlace.time;
+        delete firstPlace.rank;
 
-      console.log("NEW ENTRY", newEntry);
-      console.log("1ST PLACE", firstPlace);
-      console.log("=", isEqual(newEntry, firstPlace));
-
-      newTopScore.value = isEqual(newEntry, firstPlace);
+        newTopScore.value = isEqual(newEntry, firstPlace);
+      }
     }
   }
 }, 1);
 
 const backToMenu = () => {
-  gameStore.toggleGameStatus();
+  if(props.gameStatus === "VICTORY") gameStore.toggleGameStatus();
   gameStore.setTime(0);
   gameStore.setBerries(0);
   router.push("/");

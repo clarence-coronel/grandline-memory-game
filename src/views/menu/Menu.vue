@@ -104,7 +104,7 @@
             </button>
             <button
               :disabled="disableButtons"
-              @click=""
+              @click="changeActiveMenu('SETTINGS')"
               class="md:hover:bg-white md:hover:text-primary md:hover:text-xl font-semibold text-lg text-white px-3 py-3 md:py-6 duration-200"
             >
               Settings
@@ -114,6 +114,9 @@
       </template>
 
       <Leaderboard v-else-if="activeMenu == 'LEADERBOARD'" />
+
+      <Settings v-else-if="activeMenu == 'SETTINGS'"/>
+
       <div v-show="activeMenu == 'MAIN_MENU'" class="w-full h-10 text-white text-center">
         <a
           href="https://github.com/clarence-coronel"
@@ -254,6 +257,7 @@ import { useGameStore } from "@/store/GameStore";
 import { useSettingsStore } from "@/store/SettingsStore";
 import { useFetch } from "@/composables/useFetch";
 import Leaderboard from "./Leaderboard.vue";
+import Settings from "./Settings.vue"
 import facts from "@/data/facts.json";
 import { onMounted, ref, watch, watchEffect } from "vue";
 
@@ -272,7 +276,6 @@ const disableButtons = ref(false);
 const router = useRouter();
 const audio = ref(null);
 
-characterStore.setLimit(10);
 characterStore.loadCharacters();
 
 const toggleMusic = () => {
@@ -291,6 +294,9 @@ const toggleMusic = () => {
 const goToGame = () => {
   disableButtons.value = true;
   addExitAnim.value = true;
+
+  characterStore.setLimit(settingsStore.getNumberOfCards);
+  gameStore.setCardsLeft(settingsStore.getNumberOfCards)
 
   setTimeout(() => {
     audio.value.pause();

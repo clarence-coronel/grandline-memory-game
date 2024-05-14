@@ -5,8 +5,14 @@
     <div
       class="w-full max-w-[1600px] flex flex-col md:flex-row justify-center items-center md:justify-between gap-5 md:gap-12"
     >
-      <div class="flex gap-5 w-full max-w-[700px] items-center">
-        <span class="font-medium text-base md:text-xl text-white">HP</span>
+      <div class="flex flex-col md:flex-row gap-5 w-full items-center">
+        <span 
+          :class="{
+              'text-red-500 animate-pulse': hpLeft <= 20,
+              'text-orange-500': hpLeft <= 40 && hpLeft > 20,
+              'text-green-500': hpLeft > 40,
+            }"
+            class="font-medium text-base md:text-xl">{{ settingsStore.getPlayerName }}</span>
         <div
           class="bg-neutral-600 w-full max-w-[700px] h-3 md:h-5 rounded-md overflow-hidden"
         >

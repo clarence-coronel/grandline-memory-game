@@ -14,10 +14,10 @@ export const useSettingsStore = defineStore("SettingsStore", {
   state: () => {
     return {
       playerName: "Buggy D. Clown",
-      hp: 100, //100, custom
+      hp: 100, //50, 100, 100, CUSTOM
       difficulty: "NORMAL", //EASY, NORMAL, HARD, CUSTOM
-      numberOfCards: 10, // 5, 10, custom
-      damage: 4,
+      numberOfCards: 10, // 5, 10, 15, CUSTOM
+      damage: 4, // 3, 4, 5, CUSTOM
       leaderboard: getLeaderboard(),
     };
   },

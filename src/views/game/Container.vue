@@ -25,7 +25,6 @@ const props = defineProps({
 
 const emits = defineEmits(['gameEnded'])
 
-gameStore.setCardsLeft(10)
 gameStore.setHp(settingsStore.getHp)
 
 const selectCard = (payload) => {
