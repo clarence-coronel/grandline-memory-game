@@ -194,7 +194,7 @@ const handleDifficultyChange = (initial = true) => {
     form.numOfCards = "10";
     form.damage = "4";
   } else if (form.difficulty === "HARD") {
-    form.hp = "60";
+    form.hp = "80";
     form.numOfCards = "15";
     form.damage = "4";
   }
