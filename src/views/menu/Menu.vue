@@ -115,9 +115,12 @@
 
       <Leaderboard v-else-if="activeMenu == 'LEADERBOARD'" />
 
-      <Settings v-else-if="activeMenu == 'SETTINGS'"/>
+      <Settings v-else-if="activeMenu == 'SETTINGS'" />
 
-      <div v-show="activeMenu == 'MAIN_MENU'" class="w-full h-10 text-white text-center">
+      <div
+        v-show="activeMenu == 'MAIN_MENU'"
+        class="w-full h-10 text-white text-center"
+      >
         <a
           href="https://github.com/clarence-coronel"
           target="_blank"
@@ -257,12 +260,11 @@ import { useGameStore } from "@/store/GameStore";
 import { useSettingsStore } from "@/store/SettingsStore";
 import { useFetch } from "@/composables/useFetch";
 import Leaderboard from "./Leaderboard.vue";
-import Settings from "./Settings.vue"
+import Settings from "./Settings.vue";
 import facts from "@/data/facts.json";
 import { onMounted, ref, watch, watchEffect } from "vue";
 
 import { useRouter } from "vue-router";
-import isEqual from "lodash/isEqual";
 
 const musicStore = useMusicStore();
 const gameStore = useGameStore();
@@ -296,7 +298,7 @@ const goToGame = () => {
   addExitAnim.value = true;
 
   characterStore.setLimit(settingsStore.getNumberOfCards);
-  gameStore.setCardsLeft(settingsStore.getNumberOfCards)
+  gameStore.setCardsLeft(settingsStore.getNumberOfCards);
 
   setTimeout(() => {
     audio.value.pause();

@@ -3,7 +3,7 @@
     class="w-full flex justify-center p-5 items-start pt-[20vh] min-h-screen fixed bg-black/70 z-50"
   >
     <div
-      class="flex flex-col justify-start items-center bg-white w-full max-w-[500px] rounded-lg p-5 md:p-10  gap-6 md:gap-10"
+      class="flex flex-col justify-start items-center bg-white w-full max-w-[500px] rounded-lg p-5 md:p-10 gap-6 md:gap-10"
     >
       <template v-if="gameStatus == 'VICTORY'">
         <h1 class="text-green-500 font-bold text-3xl md:text-4xl">Victory!</h1>
@@ -62,6 +62,7 @@ import { useGameStore } from "@/store/GameStore";
 import { useSettingsStore } from "@/store/SettingsStore";
 import { useRouter } from "vue-router";
 import isEqual from "lodash/isEqual";
+import { useMusicStore } from "@/store/MusicStore";
 
 const props = defineProps({
   gameStatus: {
@@ -77,6 +78,8 @@ const totalBerries = ref(0);
 const berries = ref(0);
 const time = ref(0);
 
+const musicStore = useMusicStore();
+
 const newTopScore = ref(false);
 
 let populateBerriesFinished = ref(false);
@@ -84,7 +87,7 @@ let populateTimeFinished = ref(false);
 let populateReducedBerriesFinished = ref(false);
 
 const populateBerries = setInterval(() => {
-  if(props.gameStatus == 'VICTORY'){
+  if (props.gameStatus == "VICTORY") {
     if (berries.value != gameStore.getBerries) {
       berries.value += 1;
     } else {
@@ -121,8 +124,10 @@ const reduceTotalBerries = setInterval(() => {
       //   if negative
       if (totalBerries.value < 0) totalBerries.value = 0;
 
-      if(settingsStore.getDifficulty != "CUSTOM"){
-        const newEntry = settingsStore.addEntryToLeaderboard(totalBerries.value);
+      if (settingsStore.getDifficulty != "CUSTOM") {
+        const newEntry = settingsStore.addEntryToLeaderboard(
+          totalBerries.value
+        );
         const firstPlace = { ...settingsStore.getLeaderboardByDesc[0] };
 
         delete newEntry.time;
@@ -136,9 +141,10 @@ const reduceTotalBerries = setInterval(() => {
 }, 1);
 
 const backToMenu = () => {
-  if(props.gameStatus === "VICTORY") gameStore.toggleGameStatus();
+  if (props.gameStatus === "VICTORY") gameStore.toggleGameStatus();
   gameStore.setTime(0);
   gameStore.setBerries(0);
+  musicStore.setMusicPlaying = false;
   router.push("/");
 };
 </script>
